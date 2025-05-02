@@ -1,34 +1,52 @@
 package org.example;
 
-import org.example.computer.Mouse;
-import org.example.tortoise.Reptil;
-import org.example.tortoise.Testudin;
-import org.example.tortoise.Tortuga;
+import org.example.controller.EmpleadoController;
+import org.example.model.Empleado;
+
+import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
-        Tortuga t = new Tortuga();
-        Testudin td = new Testudin();
-        Reptil r = new Reptil();
+        Scanner sc = new Scanner(System.in);
+        EmpleadoController controller = EmpleadoController.getInstance();
 
-        System.out.println(Reptil.class.equals(t.getClass()));
-        System.out.println(Reptil.class.equals(td.getClass()));
-        System.out.println(Reptil.class.equals(r.getClass()));
+        System.out.println("""
+                Elija una de las siguientes opciones:
+                1. Dar de alta un empleado
+                2. Salir
+                """);
 
-        System.out.println();
+        int opcion = sc.nextInt();
 
-        System.out.println(t instanceof Reptil);
-        System.out.println(td instanceof Reptil);
-        System.out.println(r instanceof Reptil);
+        if(opcion == 1) {
+            System.out.println("Ingrese el sueldo bruto del empleado: ");
+            int sueldoBruto = sc.nextInt();
 
-        System.out.println();
+            System.out.println("Ingrese el nombre del empleado: ");
+            String nombre = sc.next();
 
-        System.out.println(Reptil.class.equals(t.getClass()) || Testudin.class.equals(t.getClass()) || Tortuga.class.equals(t.getClass()));
-        System.out.println(Reptil.class.equals(td.getClass()) || Testudin.class.equals(td.getClass()) || Tortuga.class.equals(td.getClass()));
-        System.out.println(Reptil.class.equals(r.getClass()) || Testudin.class.equals(r.getClass()) || Tortuga.class.equals(r.getClass()));
+            System.out.println("Ingrese el domicilio del empleado: ");
+            String domicilio = sc.next();
 
-        Mouse.Wire wire = new Mouse.Wire(10);
+            System.out.println("Ingrese el legajo del empleado: ");
+            int legajo = sc.nextInt();
+
+            Empleado empleado = controller.darAlta(nombre, domicilio, legajo, sueldoBruto);
+            System.out.println(empleado);
+            sc.close();
+            System.exit(0);
+            return;
+        }
+
+        if(opcion == 2) {
+            System.out.println("Nos" + " vemos!");
+            sc.close();
+            System.exit(0);
+            return;
+        }
+
+        sc.close();
     }
 
 }
