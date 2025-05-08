@@ -1,5 +1,8 @@
 package org.example.model;
 
+import lombok.ToString;
+
+@ToString
 public final class EmpleadoContratado extends Empleado {
 
     private double valorPorHora;
@@ -25,12 +28,4 @@ public final class EmpleadoContratado extends Empleado {
         return 0;
     }
 
-    @Override
-    public String toString() {
-        return "EmpleadoContratado{" +
-                "valorPorHora=" + valorPorHora +
-                ", horasContratadas=" + horasContratadas +
-                super.toString() +
-                '}';
-    }
 }
