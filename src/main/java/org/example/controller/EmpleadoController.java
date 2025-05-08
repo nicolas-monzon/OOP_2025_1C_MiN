@@ -5,7 +5,7 @@ import org.example.handler.EmpleadoHandler;
 
 public final class EmpleadoController {
 
-    private static EmpleadoController instance;
+    private static EmpleadoController instance2;
 
     private EmpleadoHandler empleadoHandler;
 
@@ -14,10 +14,10 @@ public final class EmpleadoController {
     }
 
     public static EmpleadoController getInstance() {
-        if (instance == null) {
-            instance = new EmpleadoController();
+        if (instance2 == null) {
+            instance2 = new EmpleadoController();
         }
-        return instance;
+        return instance2;
     }
 
     public Empleado darAlta(String nombre, String domicilio, int legajo, int sueldoBruto) { // CRUD: Create, Read, Update, Delete

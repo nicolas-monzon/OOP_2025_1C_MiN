@@ -1,9 +1,12 @@
 package org.example.model;
 
+import lombok.Data;
+
+@Data
 public abstract class Empleado implements Trabajador, Persona {
 
     private String nombre;
-    private String domicilio;
+    protected String domicilio;
     private int legajo;
 
     public Empleado(String nombre, String domicilio, int legajo) {
@@ -12,12 +15,4 @@ public abstract class Empleado implements Trabajador, Persona {
         this.legajo = legajo;
     }
 
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "nombre='" + nombre + '\'' +
-                ", domicilio='" + domicilio + '\'' +
-                ", legajo=" + legajo +
-                '}';
-    }
 }
