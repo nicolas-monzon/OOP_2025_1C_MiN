@@ -1,98 +1,151 @@
 package org.example;
 
-import org.example.controller.EmpleadoController;
-import org.example.model.*;
+import lombok.NonNull;
+import org.example.model.Animal;
+import org.example.model.AnimalComparator;
+import org.example.model.Color;
+import org.example.model.Persona;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class App {
 
+    // array -> longitud fija, random access, borrado lógico
+    // list -> secuencia ordenada, admite repetidos, borrado físico
+    // lista enlazada -> no tiene longitud fija, no tiene random access
+
+    // vectores
+    // coordenadas
+    // pares
+    // arrays bidimensionales
+    // matrices
+    // tuplas
+
+    // array y list son indexados y admiten repetidos
+
+    // [1, 2, 2, 6, 3, 9]
+
+    // tipos de datos algebraicos -> 1, 1 (son iguales) -> nat := zero | Succ(nat)
+    // tipos de datos abstractos -> List -> add, remove, get(index), size()
+
+    // colleciones son adts
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        EmpleadoController controller = EmpleadoController.getInstance();
-        System.out.println("""
-                Elija una de las siguientes opciones:
-                1. Dar de alta un empleado
-                2. Salir
-                """);
+        List<Animal> list = new LinkedList<>();
+        list.add(new Animal("Flash", 9));
+        list.add(new Animal("Speed", 0));
+        list.sort(new AnimalComparator());
 
-        int opcion;
-        while (true) {
-            try {
-                opcion = sc.nextInt();
-                break;
-            } catch (RuntimeException e) {
-                System.out.println("Ingrese un valor numérico");
-                sc.nextLine(); // Faltaba limpiar el buffer
-            }
-        }
-
-        if(opcion == 1) {
-            System.out.println("Ingrese el sueldo bruto del empleado: ");
-            int sueldoBruto = sc.nextInt();
-
-            System.out.println("Ingrese el nombre del empleado: ");
-            String nombre = sc.next();
-
-            System.out.println("Ingrese el domicilio del empleado: ");
-            String domicilio = sc.next();
-
-            System.out.println("Ingrese el legajo del empleado: ");
-            int legajo = sc.nextInt();
-
-            Empleado empleado = controller.darAlta(nombre, domicilio, legajo, sueldoBruto);
-            System.out.println(empleado);
-            sc.close();
-            System.exit(0);
-            return;
-        }
-
-        if(opcion == 2) {
-            System.out.println("Nos" + " vemos!");
-            sc.close();
-            System.exit(0);
-            return;
-        }
-
-        sc.close();
-
-        /*Pato pato = new Pato("Lucas", "pato", 10);
-        Pato pato2 = new Pato();
-
-        Pato[] patos = new Pato[2];
-        // [null, null]
-
-        patos[0] = pato;
-        // [pato, null]
-
-        for(int i = 0; i < patos.length; i++) {
-            System.out.println(patos[i]);
-        }
-
-        int[] a = { 1, 2, 3 };
-        double[] x = new double[a.length];
-        for(int i = 0; i < a.length; i++) {
-            x[i] = a[i];
-        }
-
-        Animal[] arreglo = new Animal[3];
-        arreglo[0] = new Tortuga();
-        arreglo[1] = new Tortuga();
-        arreglo[2] = pato;
-
-        for(int i = 0; i < arreglo.length; i++) {
-            if(arreglo[i] instanceof Tortuga t) {
-                System.out.println(t);
-            }
-        }
-
-        Type type = Type.CORAZON;
-        String text = PartesDeLaComputadora.MOUSE.name();
-        System.out.println(text);
-
-        String test = "..";
-
-        Color color = Color.getColorByName("RED");*/
+        Collections.sort(new ArrayList<Color>());
+        foo(list);
     }
 
+    public static void foo(@NonNull List<Animal> list) {
+        List<Animal> list1 = new ArrayList<>(100);
+        System.out.println(list1.size());
+        list1.addAll(list);
+
+        System.out.println(list1.size());
+        list1.remove(new Animal("Speed", 1));
+        System.out.println(list1.size());
+
+        if (!list.isEmpty()) {
+            list.getFirst().setName("Manuelita");
+            list.getLast();
+        }
+
+        // variable de objeto -> objeto  (referencia)
+        // flechas que apuntan a cualquier cosa (puntero)
+        // elemento -> siguiente elemento (cursores)
+
+        for (Animal animal : list) {
+            System.out.println(animal);
+        }
+
+        // LIFO
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+
+        Integer tope = stack.pop();
+
+        List<Integer> list2 = new ArrayList<>();
+        for (Integer a : stack) {
+            list2.add(a);
+        }
+
+        // FIFO
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+
+        Integer first = queue.peek();
+        queue.remove(first);
+        queue.add(first);
+
+        // Conjunto -> no admite repetidos -> no garantiza que este ordenado
+        Set<Animal> set = new HashSet<>();
+        for (Animal animal : set) {
+
+        }
+
+        set.add(new Animal("Speed", 1));
+        set.add(new Animal("Speed", 1));
+        set.add(new Animal("Speed", 1));
+        set.add(new Animal("Speed", 1));
+        set.add(new Animal("Speed", 1));
+
+        Set<Animal> newSet = new HashSet<>(list); // UUIDv4
+        list = new ArrayList<>(newSet);
+
+        // animal -> hash -> uso el hash como posicion en donde se va a guardar
+        // existe un animal en el conjunto? -> hash -> nos fijamos si esa posición está ocupada o tiene null
+
+        // Set<Guest> init = new ...
+        // Set<Guest> newGuests = new ...
+
+        // Interseccion
+        // Union
+        // Resta
+
+        // init - newGuests -> los que cancele
+        // newGuests - init -> los nuevos
+
+        Map<String, String> map = new HashMap<>();
+        Map<Integer, Persona> map2 = new HashMap<>();
+
+        map.put("tortuga", "Manuelita");
+        map.put("tortuga 2", "Manuelita 2");
+
+        if (!map.containsKey("tortuga")) {
+            map.put("tortuga", "Manuelita 2");
+        }
+
+        Map<String, List<String>> diccionarioMultiple = new HashMap<>();
+        for (Map.Entry<String, List<String>> fila : diccionarioMultiple.entrySet()) {
+            System.out.println(fila.getKey());
+            System.out.println(fila.getValue());
+        }
+
+        map.get("tortuga");
+
+        map.remove("tortuga");
+
+
+        Map<Integer, Map<Integer, Map<String, Persona>>> map3 = new HashMap<>();
+        var map4 = map3;
+
+
+        System.out.println(set.size());
+
+
+        Stack<Integer> stack2 = new Stack<>();
+        List<Integer> example = List.copyOf(stack2);
+        example.add(6);
+
+        // atributo2: List<List<A>>
+        // atributo: Map
+    }
 }
