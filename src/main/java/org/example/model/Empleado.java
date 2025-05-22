@@ -3,7 +3,7 @@ package org.example.model;
 import lombok.Data;
 
 @Data
-public abstract class Empleado implements Trabajador, Persona {
+public abstract class Empleado implements Trabajador {
 
     private String nombre;
     protected String domicilio;

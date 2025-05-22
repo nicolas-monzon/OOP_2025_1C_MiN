@@ -1,6 +1,6 @@
 package org.example.model;
 
-public interface Trabajador extends Persona {
+public interface Trabajador {
 
     double getSalario();
     double getBonificacion();

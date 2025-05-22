@@ -1,11 +1,12 @@
 package org.example;
 
 import lombok.NonNull;
-import org.example.model.Animal;
-import org.example.model.AnimalComparator;
-import org.example.model.Color;
-import org.example.model.Persona;
+import org.example.controller.EmpleadoController;
+import org.example.error.EmptyStringException;
+import org.example.error.LegajoOutOfRangeException;
+import org.example.model.*;
 
+import javax.naming.ldap.Control;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,14 +32,36 @@ public class App {
 
     // colleciones son adts
 
-    public static void main(String[] args) {
-        List<Animal> list = new LinkedList<>();
-        list.add(new Animal("Flash", 9));
-        list.add(new Animal("Speed", 0));
-        list.sort(new AnimalComparator());
 
-        Collections.sort(new ArrayList<Color>());
-        foo(list);
+    // A < B < C < D < ... <..
+    public static void main(String[] args) {
+        int attempts = 0;
+        while (attempts < 3) {
+
+            attempts++;
+        }
+        if(attempts == 3) {
+            //
+        }
+        EmpleadoController controller = EmpleadoController.getInstance();
+        Empleado empleado;
+        try(Scanner scanner = new Scanner(System.in)) {
+            empleado = controller.darAlta("", "Belgrano", 123123123, 1000000);
+        } catch (LegajoOutOfRangeException e) {
+            System.out.println(e.getMessage());
+        } catch (EmptyStringException e) {
+            // 
+        } catch (Exception e) {
+            //
+        } finally {
+            try {
+                empleado = controller.darAlta("", "Belgrano", 123123123, 1000000);
+            } catch (Exception e) {
+
+            }
+        }
+
+
     }
 
     public static void foo(@NonNull List<Animal> list) {
