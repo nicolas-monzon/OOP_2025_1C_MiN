@@ -5,6 +5,7 @@ import org.example.controller.EmpleadoController;
 import org.example.error.EmptyStringException;
 import org.example.error.LegajoOutOfRangeException;
 import org.example.model.*;
+import org.example.observer.EstudianteObserver;
 
 import javax.naming.ldap.Control;
 import java.util.*;
@@ -170,5 +171,27 @@ public class App {
 
         // atributo2: List<List<A>>
         // atributo: Map
+
+        List<Integer> listA = new ArrayList<>();
+        listA.add(1);
+        list.remove(1);
+        List<Integer> listB = new ArrayList<>();
+    }
+
+    private static void observerExample() {
+        Estudiante estudiante = new Estudiante();
+        Estudiante estudiante2 = new Estudiante();
+
+        Profesor profesor = new Profesor();
+        profesor.attach(estudiante);
+        profesor.attach(estudiante2);
+
+        List<Nota> notas = new ArrayList<>();
+        Nota nota1 = new Nota(estudiante, 10);
+        Nota nota2 = new Nota(estudiante2, 8);
+        notas.add(nota1);
+        notas.add(nota2);
+
+        profesor.notifyObservers(notas);
     }
 }
