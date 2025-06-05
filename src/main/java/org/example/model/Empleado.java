@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public abstract class Empleado implements Trabajador {
 
-    private String nombre;
     protected String domicilio;
+    private String nombre;
     private int legajo;
 
     public Empleado(String nombre, String domicilio, int legajo) {

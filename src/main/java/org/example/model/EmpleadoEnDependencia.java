@@ -10,7 +10,7 @@ public final class EmpleadoEnDependencia extends Empleado {
     }
 
     public double getSueldoNeto() {
-        return sueldoBruto - 0.13*sueldoBruto;
+        return sueldoBruto - 0.13 * sueldoBruto;
     }
 
     @Override

@@ -7,9 +7,6 @@ import org.example.model.Investigador;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Mapper {
 
@@ -66,7 +63,7 @@ public class Mapper {
 
     public static List<Investigador> mapAll(List<Docente> docentes) {
         List<Investigador> result = new ArrayList<>();
-        for(Docente docente : docentes) {
+        for (Docente docente : docentes) {
             result.add(map(docente));
         }
         return result;
@@ -74,7 +71,7 @@ public class Mapper {
 
     public static List<Docente> mapAll2(List<Investigador> investigadores) {
         List<Docente> result = new ArrayList<>();
-        for(Investigador investigador : investigadores) {
+        for (Investigador investigador : investigadores) {
             result.add(map(investigador));
         }
         return result;
@@ -82,8 +79,8 @@ public class Mapper {
 
     public static List<Investigador> filterByEdad(List<Investigador> investigadores, int edad) {
         List<Investigador> result = new ArrayList<>();
-        for(Investigador investigador : investigadores) {
-            if(investigador.getEdad() < edad) {
+        for (Investigador investigador : investigadores) {
+            if (investigador.getEdad() < edad) {
                 result.add(investigador);
             }
         }
@@ -95,7 +92,7 @@ public class Mapper {
     // [] concatenarPila pila = pila
     public static int reduce(List<Investigador> investigadores) {
         int añosAcumulados = 0;
-        for(Investigador investigador : investigadores) {
+        for (Investigador investigador : investigadores) {
             añosAcumulados += investigador.getEdad();
         }
         return añosAcumulados;
