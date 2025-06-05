@@ -26,12 +26,12 @@ public class Profesor implements ProfesorObservable {
 
     @Override
     public void notifyObservers(List<Nota> notas) {
-        for(EstudianteObserver observer : observers) {
-            if(notas.contains(observer)) {
+        for (EstudianteObserver observer : observers) {
+            if (notas.contains(observer)) {
                 Nota par = notas.stream().filter(nota -> nota.getEstudiante().equals(observer))
                         .findFirst()
                         .orElse(null);
-                if(par != null) {
+                if (par != null) {
                     observer.reaccionarAUnaNota(par.getNota());
                 }
             }

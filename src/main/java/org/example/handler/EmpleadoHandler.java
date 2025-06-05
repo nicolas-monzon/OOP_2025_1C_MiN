@@ -1,5 +1,6 @@
 package org.example.handler;
 
+import org.example.dto.EmpleadoCreation;
 import org.example.model.Empleado;
 import org.example.model.EmpleadoEnDependencia;
 
@@ -23,8 +24,11 @@ public final class EmpleadoHandler {
         return instance;
     }
 
-    public Empleado darAlta(String nombre, String domicilio, int legajo, int sueldoBruto) {
-        Empleado empleado = new EmpleadoEnDependencia(nombre, domicilio, legajo, sueldoBruto);
+    public Empleado darAlta(EmpleadoCreation empleadoCreation) {
+        Empleado empleado = new EmpleadoEnDependencia(empleadoCreation.nombre(),
+                empleadoCreation.domicilio(),
+                empleadoCreation.legajo(),
+                empleadoCreation.sueldoBruto());
         empleados.add(empleado);
         return empleado;
     }
