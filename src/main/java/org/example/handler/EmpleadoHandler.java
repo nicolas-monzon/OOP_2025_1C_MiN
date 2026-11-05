@@ -25,12 +25,17 @@ public final class EmpleadoHandler {
     }
 
     public Empleado darAlta(EmpleadoCreation empleadoCreation) {
-        Empleado empleado = new EmpleadoEnDependencia(empleadoCreation.nombre(),
-                empleadoCreation.domicilio(),
-                empleadoCreation.legajo(),
-                empleadoCreation.sueldoBruto());
-        empleados.add(empleado);
-        return empleado;
+        return null;
     }
 
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoHandler{" +
+                "empleados=" + empleados +
+                '}';
+    }
 }
